@@ -39,6 +39,11 @@ def wd():
     wd = request.args.get('wd')
     return "您通过查询字符串的方式传递的参数是 %s" % wd
 
+#类似百度搜素参数接受方式,通过问号形式参数传递
+@app.route('/d')
+def wd_demo():
+    wd = request.args.get('wd')
+    return "您通过查询字符串的方式传递的参数是 %s" % wd
 
 
 if __name__ == '__main__':

@@ -119,3 +119,41 @@ if __name__ == '__main__':
    host="192.168.1.200"
    )
 ```
+
+***3.url_for 通过已知一个函数名称，去获这个函数的URL***
+```
+一般我们通过一个URL就可以执行到某一个函数。如果反过来，我们知道一个函数，怎么去获得这个URL呢？url_for函数就可以帮我们实现这个功能。
+from flask import Flask,url_for
+app  = Flask(__name__)
+@app.route('/')
+def hello_world():
+    return url_for('my_list')
+
+@app.route('/list')
+def my_list():
+    return "My list"
+
+"""
+ssh://root@192.168.1.200:22/usr/bin/python3.6 -u /xlg/app/url_for.py
+ * Debug mode: off
+ * Running on http://192.168.1.200:5000/ (Press CTRL+C to quit)
+192.168.1.6 - - [16/May/2021 21:59:07] "GET /list HTTP/1.1" 200 -
+”“”
+
+
+@app.route('/')
+def hello_world():
+    return url_for('my_list',page=1,count=1)
+
+@app.route('/list/<page>/')
+def my_list(page):
+    return "My list"
+
+
+if __name__ == '__main__':
+   app.run(
+   host="192.168.1.200"
+   )
+
+
+```
