@@ -104,7 +104,14 @@ def any_detail(url_path,id):
     else:
        return "用户资源详情: %s" % id
 
-
+接受用户参数发方式
+1.使用path的形式（将参数嵌入到路径中）
+2.通过查询字符串方式传递(类似百度搜素) 就是通过"?key=value" 的形式
+#类似百度搜素参数接受方式,通过问号形式参数传递
+@app.route('/d')
+def wd():
+    wd = request.args.get('wd')
+    return "您通过查询字符串的方式传递的参数是 %s" % wd
 
 
 if __name__ == '__main__':

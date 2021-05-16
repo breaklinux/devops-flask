@@ -1,6 +1,9 @@
 from flask import Flask
+from flask import request
 app  = Flask(__name__)
 import config
+
+
 app.config.from_object(config)
 @app.route('/')
 def hello_world():
@@ -29,6 +32,12 @@ def any_detail(url_path,id):
        return '用户组的详情: %s' % id
     else:
        return "用户资源详情: %s" % id
+
+#类似百度搜素参数接受方式,通过问号形式参数传递
+@app.route('/d')
+def wd():
+    wd = request.args.get('wd')
+    return "您通过查询字符串的方式传递的参数是 %s" % wd
 
 
 
