@@ -81,10 +81,10 @@ def xiaolige_detail(devops_id):
 支持多个数据类型: 
 string: 默认的数据类型，接受没有任何斜杠/的字符串。
 int: 整形
-float: 浮点型。
-path： 和string类似，但是可以传递斜杠/。
-uuid： uuid类型的字符串。
-any：可以指定多种路径，这个通过一个例子来进行说明:
+float: 浮点型。 
+path： 和string类似，但是可以传递斜杠/。 获取用户输入多个路径
+uuid： uuid类型的字符串。 #用户多个uuid
+any：可以指定多种路径，这个通过一个例子来进行说明: 支持多个路径用于 用户,组,资源等多个路径
 
 参考Int用法: @app.route('/devops/<int:devops_id>') 
 def xiaolige_detail(devops_id):
@@ -93,6 +93,17 @@ def xiaolige_detail(devops_id):
 参考path用法:@app.route('/devops/<path:devopsId>')
 def devops_detail(devopsId):
     return "你的运维id是: %s" % devopsId
+
+参考any用法:@app.route('/devops/<path:devopsId>')
+@app.route('/<any(user,group,resource):url_path>/<id>')
+def any_detail(url_path,id):
+    if url_path == "user":
+       return "用户详情：%s" % id
+    elif url_path == "group":
+       return '用户组的详情: %s' % id
+    else:
+       return "用户资源详情: %s" % id
+
 
 
 
