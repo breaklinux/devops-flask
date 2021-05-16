@@ -150,6 +150,16 @@ def my_list(page):
     return "My list"
 
 
+@app.route('/')
+def devops():
+    return url_for('login',next='/')
+
+@app.route('/login/')
+def login():
+    return login
+
+
+
 if __name__ == '__main__':
    app.run(
    host="192.168.1.200"
